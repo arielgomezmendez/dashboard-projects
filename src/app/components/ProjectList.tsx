@@ -1,10 +1,23 @@
 import React from "react";
 import ProjectCard from "./ProjectCard";
 
-export default function ProjectList() {
+type Project = {
+  id: string;
+  title: string;
+  status: "Active" | "Completed";
+  date: string;
+};
+
+interface Props {
+  projects: Project[];
+}
+
+export default function ProjectList({ projects }: Props) {
   return (
-    <div>
-      <ProjectCard />
+    <div >
+      {projects.map((project) => (
+        <ProjectCard key={project.id} {...project}/>
+      ))}
     </div>
   );
 }

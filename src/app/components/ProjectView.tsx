@@ -2,10 +2,8 @@
 
 import ProjectFilter from "./ProjectFilter";
 import ProjectList from "./ProjectList";
-
-import { projects } from "../data/projects";
 import { Project } from "../types/projectType";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 interface ProjectsViewProps {
   projects: Project[];
@@ -14,18 +12,16 @@ interface ProjectsViewProps {
 export default function ProjectView({ projects }: ProjectsViewProps) {
   const [statusFilter, setStatusFilter] = useState("");
 
-  let filteredProjects
+  //let filteredProjects
 
-  if(!statusFilter){
-    filteredProjects = projects;
-  } else{
-    filteredProjects = projects.filter(project => project.status === statusFilter);
-  }
-
+  const filteredProjects = useMemo(() => {
+    if (!statusFilter) return projects;
+    return projects.filter((project) => project.status === statusFilter);
+  }, [statusFilter,projects]);
 
   return (
     <>
-      {<ProjectFilter value={statusFilter} onChange={setStatusFilter}/>}
+      {<ProjectFilter value={statusFilter} onChange={setStatusFilter} />}
       <ProjectList projects={filteredProjects} />
     </>
   );

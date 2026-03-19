@@ -128,7 +128,7 @@ export default function NewProjectForm() {
         <div className="flex items-center gap-3">
           <button
             type="submit"
-            className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
+            className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700"
           >
             Create project
           </button>

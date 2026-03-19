@@ -1,11 +1,10 @@
 import Link from "next/link";
 
-
 export default function Sidebar() {
   return (
     <aside className="w-64 min-h-screen border-r border-slate-200 bg-white px-4 py-6">
       <div className="mb-8">
-        <h2 className="text-2xl font-bold text-slate-900">Commpany Logo</h2>
+        <h2 className="text-2xl font-bold text-slate-900">Logo</h2>
       </div>
 
       <nav aria-label="Main navigation">

@@ -13,10 +13,20 @@ interface ProjectsViewProps {
 
 export default function ProjectView({ projects }: ProjectsViewProps) {
   const [statusFilter, setStatusFilter] = useState("");
+
+  let filteredProjects
+
+  if(!statusFilter){
+    filteredProjects = projects;
+  } else{
+    filteredProjects = projects.filter(project => project.status === statusFilter);
+  }
+
+
   return (
     <>
       {<ProjectFilter value={statusFilter} onChange={setStatusFilter}/>}
-      <ProjectList projects={projects} />
+      <ProjectList projects={filteredProjects} />
     </>
   );
 }

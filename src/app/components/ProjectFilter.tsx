@@ -12,7 +12,7 @@ export default function ProjectFilter({ value, onChange }: ProjectFilterProps) {
       id="project-status"
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className="w-56 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-400"
+      className="w-48 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-400 mb-8"
     >
       {/* <label
         htmlFor="project-status"

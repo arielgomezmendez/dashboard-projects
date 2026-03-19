@@ -12,8 +12,6 @@ interface ProjectsViewProps {
 export default function ProjectView({ projects }: ProjectsViewProps) {
   const [statusFilter, setStatusFilter] = useState("");
 
-  //let filteredProjects
-
   const filteredProjects = useMemo(() => {
     if (!statusFilter) return projects;
     return projects.filter((project) => project.status === statusFilter);

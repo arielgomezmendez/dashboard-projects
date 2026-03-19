@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Project, ProjectStatus } from "../types/projectType";
+import { useRouter } from "next/navigation";
 
 export default function NewProjectForm() {
   /* States to save the info of form inputs */
@@ -9,6 +10,7 @@ export default function NewProjectForm() {
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState<ProjectStatus>("Active");
   const [date, setDate] = useState("");
+  const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,6 +22,20 @@ export default function NewProjectForm() {
       status,
       date,
     };
+    
+     const storedProjects = localStorage.getItem("projects"); // Get project from local storage
+
+     const parsedProjects: Project[] = storedProjects
+      ? JSON.parse(storedProjects)
+      : [];
+
+     const updatedProject = [newProject, ...parsedProjects]; // Create a new array with the new project and the previous projects
+     
+     localStorage.setItem("projects", JSON.stringify(updatedProject));
+
+     router.push('/'); //Navigate to the main route
+     router.refresh();
+
   };
 
   return (

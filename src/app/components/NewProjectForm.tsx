@@ -11,9 +11,16 @@ export default function NewProjectForm() {
   const [status, setStatus] = useState<ProjectStatus>("Active");
   const [date, setDate] = useState("");
   const router = useRouter();
+  const [error, setError] = useState("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    //Handling empty fields
+    if (!title.trim() || !description.trim() || !date) {
+      setError("Please complete all fields.");
+      return;
+    }
 
     const newProject: Project = {
       id: crypto.randomUUID(),
@@ -22,20 +29,19 @@ export default function NewProjectForm() {
       status,
       date,
     };
-    
-     const storedProjects = localStorage.getItem("projects"); // Get project from local storage
 
-     const parsedProjects: Project[] = storedProjects
+    const storedProjects = localStorage.getItem("projects"); // Get project from local storage
+
+    const parsedProjects: Project[] = storedProjects
       ? JSON.parse(storedProjects)
       : [];
 
-     const updatedProject = [newProject, ...parsedProjects]; // Create a new array with the new project and the previous projects
-     
-     localStorage.setItem("projects", JSON.stringify(updatedProject));
+    const updatedProject = [newProject, ...parsedProjects]; // Create a new array with the new project and the previous projects
 
-     router.push('/'); //Navigate to the main route
-     router.refresh();
+    localStorage.setItem("projects", JSON.stringify(updatedProject));
 
+    router.push("/"); //Navigate to the main route
+    router.refresh();
   };
 
   return (
@@ -61,6 +67,7 @@ export default function NewProjectForm() {
             onChange={(e) => setTitle(e.target.value)}
             className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-400"
             placeholder="Enter project title"
+        
           />
         </div>
         {/*Input description */}
@@ -114,6 +121,9 @@ export default function NewProjectForm() {
             className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-400"
           />
         </div>
+        {error ? (
+          <p className="mb-4 text-sm font-medium text-red-600">{error}</p>
+        ) : null}
         {/*Create project button */}
         <div className="flex items-center gap-3">
           <button

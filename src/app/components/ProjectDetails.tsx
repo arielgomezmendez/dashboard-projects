@@ -21,14 +21,10 @@ export default function ProjectDetails({ id }: { id: string }) {
       : [];
 
     const storedProject = parsedProjects.find((item) => item.id === id);
-
     if (storedProject) {
       setProject(storedProject);
     }
   }, [id]);
-
-  //const project = projects.find((item) => item.id === id); // Get the project by its id
-  //console.log("project: ", project);
 
   const statusStyles =
     project?.status === "Active"

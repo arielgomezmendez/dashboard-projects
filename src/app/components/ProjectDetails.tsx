@@ -10,6 +10,8 @@ export default function ProjectDetails({ id }: { id: string }) {
       ? "bg-green-100 text-green-700"
       : "bg-gray-200 text-gray-600";
 
+  //throw new Error("Test error"); // Throw an error to test the Error component (error.tsx).
+
   return (
     <section>
       <Link href={"/"}>← Back to projects</Link>
@@ -19,7 +21,8 @@ export default function ProjectDetails({ id }: { id: string }) {
             {project?.title}
           </h1>
           {/* Status project */}
-          <span aria-label="Project date"
+          <span
+            aria-label="Project date"
             className={`rounded-full px-3 py-1 text-sm font-medium ${statusStyles}`}
           >
             {project?.status}
@@ -28,7 +31,7 @@ export default function ProjectDetails({ id }: { id: string }) {
         {/* Date of project */}
         <p className="mb-6 text-sm text-slate-500">{project?.date}</p>
         {/* Description of project*/}
-        <div  className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+        <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
           <h2 className="mb-2 text-lg font-semibold text-slate-900">
             Description
           </h2>

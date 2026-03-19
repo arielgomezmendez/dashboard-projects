@@ -1,8 +1,33 @@
+"use client";
+
 import Link from "next/link";
 import { projects } from "../data/projects";
+import { useEffect, useState } from "react";
+import { Project } from "../types/projectType";
 
 export default function ProjectDetails({ id }: { id: string }) {
-  const project = projects.find((item) => item.id === id); // Get the project by its id
+  const [project, setProject] = useState<Project | null>(null);
+
+  useEffect(() => {
+    const mockProject = projects.find((item) => item.id === id);
+    if (mockProject) {
+      setProject(mockProject);
+      return;
+    }
+
+    const storedProjects = localStorage.getItem("projects");
+    const parsedProjects: Project[] = storedProjects
+      ? JSON.parse(storedProjects)
+      : [];
+
+    const storedProject = parsedProjects.find((item) => item.id === id);
+
+    if (storedProject) {
+      setProject(storedProject);
+    }
+  }, [id]);
+
+  //const project = projects.find((item) => item.id === id); // Get the project by its id
   //console.log("project: ", project);
 
   const statusStyles =
@@ -12,32 +37,34 @@ export default function ProjectDetails({ id }: { id: string }) {
 
   //throw new Error("Test error"); // Throw an error to test the Error component (error.tsx).
 
-  return (
-    <section>
-      <Link href={"/"}>← Back to projects</Link>
-      <div>
-        <div className="mb-4 mt-4 flex items-center gap-4">
-          <h1 className="text-3xl font-bold text-slate-900">
-            {project?.title}
-          </h1>
-          {/* Status project */}
-          <span
-            aria-label="Project date"
-            className={`rounded-full px-3 py-1 text-sm font-medium ${statusStyles}`}
-          >
-            {project?.status}
-          </span>
+  if (project !== null) {
+    return (
+      <section>
+        <Link href={"/"}>← Back to projects</Link>
+        <div>
+          <div className="mb-4 mt-4 flex items-center gap-4">
+            <h1 className="text-3xl font-bold text-slate-900">
+              {project?.title}
+            </h1>
+            {/* Status project */}
+            <span
+              aria-label="Project date"
+              className={`rounded-full px-3 py-1 text-sm font-medium ${statusStyles}`}
+            >
+              {project?.status}
+            </span>
+          </div>
+          {/* Date of project */}
+          <p className="mb-6 text-sm text-slate-500">{project?.date}</p>
+          {/* Description of project*/}
+          <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+            <h2 className="mb-2 text-lg font-semibold text-slate-900">
+              Description
+            </h2>
+            <p className="leading-7 text-slate-700">{project?.description}</p>
+          </div>
         </div>
-        {/* Date of project */}
-        <p className="mb-6 text-sm text-slate-500">{project?.date}</p>
-        {/* Description of project*/}
-        <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-          <h2 className="mb-2 text-lg font-semibold text-slate-900">
-            Description
-          </h2>
-          <p className="leading-7 text-slate-700">{project?.description}</p>
-        </div>
-      </div>
-    </section>
-  );
+      </section>
+    );
+  }
 }

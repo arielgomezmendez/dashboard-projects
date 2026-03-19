@@ -1,4 +1,4 @@
-"use-client";
+"use client";
 
 interface ProjectFilterProps {
   value: string;
@@ -14,13 +14,13 @@ export default function ProjectFilter({ value, onChange }: ProjectFilterProps) {
       onChange={(e) => onChange(e.target.value)}
       className="w-56 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-400"
     >
-      <label
+      {/* <label
         htmlFor="project-status"
         className="mb-2 block text-sm font-medium text-slate-700"
       >
         {" "}
         Filter by status
-      </label>
+      </label> */}
       <option value="">All Projects</option>
       <option value="Active">Active</option>
       <option value="Completed">Completed</option>

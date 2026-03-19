@@ -1,8 +1,9 @@
-export default function Page() {
+import NewProjectForm from "@/app/components/NewProjectForm";
+
+export default function NewProjectPage() {
   return (
-    <section className="max-w-3xl">
-      <h1 className="mb-6 text-3xl font-bold text-slate-900">New Project</h1>
-      
-    </section>
+    <>
+        <NewProjectForm/>
+    </>
   );
 }

@@ -28,7 +28,7 @@ export default function ProjectCard({ id, title, status, date }: Props) {
         <p className="mb-5 text-sm text-slate-500">{date}</p>
         <Link
           className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700"
-          href={"/"}
+          href={`/projects/${id}`}
         >
           View details
         </Link>

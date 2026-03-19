@@ -1,10 +1,17 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Sidebar() {
   return (
     <aside className=" w-full md:w-64 min-h-screen border-r border-slate-200 bg-white px-4 py-6">
       <div className="mb-8 border-b border-slate-200 pb-3" >
-        <h2 className="pb-2 text-2xl ml-2 font-bold text-slate-900">Logo</h2>
+        <Image
+            src="/logo.jpg"
+            alt="Logo"
+            width={80}
+            height={80}
+            className="object-contain"
+          />
       </div>
 
       <nav aria-label="Main navigation">

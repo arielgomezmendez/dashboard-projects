@@ -2,9 +2,14 @@ import Link from "next/link";
 import { projects } from "../data/projects";
 
 export default function ProjectDetails({ id }: { id: string }) {
-    
   const project = projects.find((item) => item.id === id); // Get the project by its id
   //console.log("project: ", project);
+
+  const statusStyles =
+    project?.status === "Active"
+      ? "bg-green-100 text-green-700"
+      : "bg-gray-200 text-gray-600";
+
   return (
     <section>
       <Link href={"/"}>← Back to projects</Link>
@@ -13,14 +18,16 @@ export default function ProjectDetails({ id }: { id: string }) {
           <h1 className="text-3xl font-bold text-slate-900">
             {project?.title}
           </h1>
-
-          <span className={`rounded-full px-3 py-1 text-sm font-medium`}>
+          {/* Status project */}
+          <span
+            className={`rounded-full px-3 py-1 text-sm font-medium ${statusStyles}`}
+          >
             {project?.status}
           </span>
         </div>
-
+        {/* Date of project */}
         <p className="mb-6 text-sm text-slate-500">{project?.date}</p>
-
+        {/* Description of project*/}
         <div>
           <h2 className="mb-2 text-lg font-semibold text-slate-900">
             Description

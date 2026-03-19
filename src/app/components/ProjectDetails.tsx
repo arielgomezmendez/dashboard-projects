@@ -1,13 +1,13 @@
 import Link from "next/link";
 
-export default function ProjectDetails() {
+export default function ProjectDetails({id}:{id:string}) {
   return (
     <section>
       <Link href={"/"}>← Back to projects</Link>
       <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
         <div className="mb-4 flex items-center justify-between gap-4">
           <h1 className="text-3xl font-bold text-slate-900">
-            Title
+            Title {id}
           </h1>
 
           <span

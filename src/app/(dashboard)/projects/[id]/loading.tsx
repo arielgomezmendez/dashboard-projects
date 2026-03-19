@@ -4,10 +4,13 @@ export default function Loading() {
       <div className="mb-6 h-6 w-40 animate-pulse rounded bg-slate-200" />
 
       <div className="mb-4 flex items-center gap-4">
-        <div className="h-12 w-96 animate-pulse rounded bg-slate-200" />
-        <div className="h-10 w-24 animate-pulse rounded-full bg-slate-200" />
+        {/* Title skeleton */}
+        <div className="h-12 w-40 animate-pulse rounded bg-slate-200" />
+        {/*Badge skeleton */}
+        <div className="h-8 w-24 animate-pulse rounded-full bg-slate-200" />
       </div>
 
+      {/*Date skeleton */}
       <div className="mb-8 h-6 w-32 animate-pulse rounded bg-slate-200" />
 
       <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">

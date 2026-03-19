@@ -14,10 +14,10 @@ interface Props {
 
 export default function ProjectList({ projects }: Props) {
   return (
-    <div >
+    <ul className="grid grid-cols-3 gap-6" >
       {projects.map((project) => (
         <ProjectCard key={project.id} {...project}/>
       ))}
-    </div>
+    </ul>
   );
 }

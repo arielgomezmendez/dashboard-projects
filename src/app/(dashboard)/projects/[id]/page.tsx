@@ -15,8 +15,7 @@ export default async function Page({ params }: ProjectDetailsProps) {
   const { id } = await params;
 
   await delay(1500);
-
-  console.log("Param:", id);
+  
   return (
     <div>
       <ProjectDetails id = {id} />

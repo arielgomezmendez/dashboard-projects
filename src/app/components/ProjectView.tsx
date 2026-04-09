@@ -13,21 +13,20 @@ export default function ProjectView({ projects }: ProjectsViewProps) {
   const [statusFilter, setStatusFilter] = useState("");
   const [allProjects, setAllProjects] = useState<Project[]>(projects);
 
-  useEffect(()=>{
+  const getStoredProjects = () => {
     const storedProjects = localStorage.getItem("projects");
-    //console.log("Stored project ", storedProjects)
-    if (storedProjects) {
-      const parsedProjects: Project[] = JSON.parse(storedProjects);
-      setAllProjects([...parsedProjects, ...projects]);
-    } else {
-      setAllProjects(projects);
-    }
-  },[projects]);
+    return storedProjects ? JSON.parse(storedProjects) : [];
+  };
+
+  useEffect(() => {
+    const stored = getStoredProjects();
+    setAllProjects([...stored, ...projects])
+  }, [projects]);
 
   const filteredProjects = useMemo(() => {
     if (!statusFilter) return allProjects;
     return allProjects.filter((project) => project.status === statusFilter);
-  }, [statusFilter,allProjects]);
+  }, [statusFilter, allProjects]);
 
   return (
     <>

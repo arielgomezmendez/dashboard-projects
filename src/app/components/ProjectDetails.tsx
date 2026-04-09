@@ -8,22 +8,23 @@ import { Project } from "../types/projectType";
 export default function ProjectDetails({ id }: { id: string }) {
   const [project, setProject] = useState<Project | null>(null);
 
-  useEffect(() => {
+  const findProject = () => {
+    //Find the project in mock
     const mockProject = projects.find((item) => item.id === id);
-    if (mockProject) {
-      setProject(mockProject);
-      return;
-    }
+    if (mockProject) return mockProject;
 
+    //Find the project in localStorage
     const storedProjects = localStorage.getItem("projects");
     const parsedProjects: Project[] = storedProjects
       ? JSON.parse(storedProjects)
       : [];
+  
+    return parsedProjects.find((item) => item.id === id);
+  };
 
-    const storedProject = parsedProjects.find((item) => item.id === id);
-    if (storedProject) {
-      setProject(storedProject);
-    }
+  useEffect(() => {
+    const projectFound = findProject()
+    if (projectFound) setProject(projectFound);
   }, [id]);
 
   const statusStyles =

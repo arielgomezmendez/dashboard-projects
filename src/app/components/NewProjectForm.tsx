@@ -30,6 +30,8 @@ export default function NewProjectForm() {
       date,
     };
 
+    console.log("newProject:", newProject);
+
     const storedProjects = localStorage.getItem("projects"); // Get project from local storage
 
     const parsedProjects: Project[] = storedProjects

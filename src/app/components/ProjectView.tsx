@@ -30,7 +30,7 @@ export default function ProjectView({ projects }: ProjectsViewProps) {
 
   return (
     <>
-      {<ProjectFilter value={statusFilter} onChange={setStatusFilter} />}
+      <ProjectFilter value={statusFilter} onChange={setStatusFilter} />
       <ProjectList projects={filteredProjects} />
     </>
   );
